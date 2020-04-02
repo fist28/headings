@@ -1,13 +1,13 @@
 class Heading
   attr_reader :title, :level, :numeration
-  attr_accessor :previous, :next
+  attr_accessor :previous_heading, :next_heading
 
   def initialize(title:, level: 0)
     @title = title
     @level = level
-    @next = nil
-    @previous = nil
-    @numeration = build_numeration
+    @next_heading = nil
+    @previous_heading = nil
+    @numeration = nil
   end
 
   def to_s
@@ -15,23 +15,21 @@ class Heading
       number = numeration.join('.') << '.'
       "#{space}#{number}\t#{title.capitalize}\n"
   end
-  private
 
-  def build_numeration
-    if previous
-      previous_numeration =  previous.numeration
+  def calculate_numeration
+    if next_heading
+      previous_numeration =  next_heading.numeration
 
-      if level > previous.numeration.size
+      if level > previous_numeration.size
         new_numeration = previous_numeration.dup.fill(1, previous_numeration.size, level)
       else
         new_numeration = previous_numeration[0..level]
         new_numeration[level] += 1
       end
 
-      new_numeration
+      @numeration = new_numeration
     else
-
-      Array.new.fill(1, 0, level+1)
+      @numeration = Array.new.fill(1, 0, level+1)
     end
   end
 end

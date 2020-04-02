@@ -5,7 +5,7 @@ require 'spec_helper'
 
     it 'print element from list' do
       subject.append('foo', 0)
-      expect(subject.print).to eq('foo')
+      expect(subject.print).to eq("1.\tFoo\n")
     end
 
   end
