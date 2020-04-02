@@ -20,8 +20,8 @@ class Heading
     if previous_heading
       previous_numeration =  previous_heading.numeration
 
-      if level > previous_numeration.size
-        new_numeration = previous_numeration.dup.fill(1, previous_numeration.size, level)
+      if level >= previous_numeration.size
+        new_numeration = previous_numeration.dup.fill(1, previous_numeration.size..level)
       else
         new_numeration = previous_numeration[0..level]
         new_numeration[level] += 1
