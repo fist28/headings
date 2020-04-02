@@ -17,8 +17,8 @@ class Heading
   end
 
   def calculate_numeration
-    if next_heading
-      previous_numeration =  next_heading.numeration
+    if previous_heading
+      previous_numeration =  previous_heading.numeration
 
       if level > previous_numeration.size
         new_numeration = previous_numeration.dup.fill(1, previous_numeration.size, level)

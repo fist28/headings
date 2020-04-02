@@ -7,20 +7,22 @@ class HeadingList
 
   def append(title, level)
     new_heading = Heading.new(title: title, level: level)
-    new_heading.next_heading = @head
-    @head.previous_heading = new_heading if @head
+    new_heading.previous_heading = @tail
+    @tail.next_heading = new_heading if @head
     new_heading.calculate_numeration
-    @head = new_heading
-    @tail ||= @head
+
+    @tail = new_heading
+    @head ||= @tail
+
     new_heading
   end
 
   def print
-    return nil unless @tail
+    return nil unless @head
 
-    node = @tail
+    node = @head
     result = node.to_s
-    while (node = node.previous_heading)
+    while (node = node.next_heading)
       result << node.to_s
     end
     result
