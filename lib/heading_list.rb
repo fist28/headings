@@ -18,9 +18,9 @@ class HeadingList
     return nil unless @tail
 
     node = @tail
-    result = node.title
+    result = node.to_s
     while (node = node.previous)
-      result << node.title
+      result << node.to_s
     end
     result
   end
