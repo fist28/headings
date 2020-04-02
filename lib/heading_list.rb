@@ -5,13 +5,13 @@ class HeadingList
     @tail = nil
   end
 
-  def <<(heading)
-    new_heading = heading
+  def append(title, level)
+    new_heading = Heading.new(title: title, level: level)
     new_heading.next = @head
     @head.previous = new_heading if @head
     @head = new_heading
     @tail ||= @head
-    heading
+    new_heading
   end
 
   def print
